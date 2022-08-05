@@ -8,7 +8,8 @@ declare module "react-native-root-toast"{
     import {TextStyle,StyleProp,ViewStyle} from "react-native";
     export interface ToastOptions {
         containerStyle?:StyleProp<ViewStyle>
-        duration?:number
+        type?: string,
+        duration?: number,
         visible?: boolean,
         position?: number,
         animation?:boolean,
@@ -40,9 +41,13 @@ declare module "react-native-root-toast"{
         BOTTOM:number,
         CENTER:number,
     }
+    export interface ToastConfig {
+        [key: string]: Element;
+    }
     export default class Toast extends React.Component<ToastProps>{
         static show:(message:string,options?:ToastOptions)=>any;
         static hide:(toast:any)=>void;
+        static setConfig:(toastConfig:ToastConfig)=>void;
         static durations:Durations;
         static positions:Positions;
     }
